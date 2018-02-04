@@ -21,9 +21,9 @@ sudo firewall-cmd --reload
 
 #### Nodes
 ```
-sudo firewall-cmd --zone=public --add-port=10250/tcp
-sudo firewall-cmd --zone=public --add-port=10255/tcp
-sudo firewall-cmd --zone=public --add-port=30000-32767/tcp
+sudo firewall-cmd --permanent --zone=public --add-port=10250/tcp
+sudo firewall-cmd --permanent --zone=public --add-port=10255/tcp
+sudo firewall-cmd --permanent --zone=public --add-port=30000-32767/tcp
 sudo firewall-cmd --permanent --zone=public --add-port=8285/udp
 sudo firewall-cmd --reload
 ```
