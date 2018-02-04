@@ -4,7 +4,7 @@ Bringing up a kubernetes cluster on 4 VMs running CentOS 7.4. Master has 4G memo
 
 ## Prerequisites
 
-1. Open respective ports as outlined in [this](https://kubernetes.io/docs/setup/independent/install-kubeadm/#check-required-ports) link. Opened 8285 as well here, as we'll be using flannel as our CNI.
+1. Open respective ports as outlined in [this](https://kubernetes.io/docs/setup/independent/install-kubeadm/#check-required-ports) link. Opened 8285/udp as well here, as we'll be using flannel as our CNI.
 
 #### Master
 ```
