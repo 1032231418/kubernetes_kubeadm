@@ -51,12 +51,32 @@ no API keys are required.
 
 #### kube_connect_using_api_key.py
 This script demonstrates usage of API_KEY in python 
-Use the following bash one liners to fetch the TOKEN from Apiserver(aka master). I've used default secret token and my Master and Api server are the same.
+Use the following bash one liners to fetch the TOKEN from Apiserver(aka master). I've used serviceAccount default secret token.
 ```
 APISERVER=$(kubectl config view | grep server | cut -f 2- -d ":" | tr -d " ")
 TOKEN=$(kubectl describe secret $(kubectl get secrets | grep default | cut -f1 -d ' ') | grep -E '^token' | cut -f2 -d':' | tr -d '\t')
 ```
+A rbac clusterRole binding was necessary. Without this, i was stuck with a `HTTP/1.1 403 Forbidden` message on the python client.
+For sake of experimenting, created a binding between `serviceAccount default` and `cluster-admin` role.
+```
+$ cat service-default-admin.yaml
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: service-default-experimental
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: default
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
 
+
+$ kubectl apply -f service-default-admin.yaml
+clusterrolebinding "service-default-experimental" created
+```
 
 
 
