@@ -1,10 +1,6 @@
+## We'll look at the usage of Python Kubernetes client
 #### The correspoding Wiki enumerates the steps followed to install kubernetes using kubeadm on CentOS 7.4
 
-Upgrade packages:
-```
-pip3.6 install --upgrade kubernetes
-pip3.6 install --upgrade urllib3
-```
 Verify versions:
 ```
 $ pip3.6 freeze
