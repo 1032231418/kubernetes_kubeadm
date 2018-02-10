@@ -2,7 +2,9 @@
 
 '''
 This is a simple program to demonstrate usage of API-KEY (aka Token) in kube-python
-I used the serviceAccount default and did a rbac binding with cluster-admin role.
+I used the serviceAccount default and did a rbac binding with cluster-admin role. More
+details in README.md
+
 This approach should be used only for initial experiments. Later the appropriate usage
 would be to create customer roles and users, accounts and appropriate rbac bindings.
 ApiToken below is obtained using kubectl:
