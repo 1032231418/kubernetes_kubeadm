@@ -1,4 +1,4 @@
-## The correspoding Wiki enumerates the steps followed to install kubernetes using kubeadm on CentOS 7.4
+#### The correspoding Wiki enumerates the steps followed to install kubernetes using kubeadm on CentOS 7.4
 
 Upgrade packages:
 ```
@@ -42,7 +42,7 @@ six==1.11.0
 urllib3==1.22
 websocket-client==0.40.0
 ```
-## Now some validations of both python code and kube config
+## Lets look into the python client and validate usage of both kube_config and api keys.
 
 #### kube_load_local_config_demo.py
 This script demonstrates usage of `config.load_kube_config()`. We can use such scripts on
@@ -50,8 +50,7 @@ machines where we can run kubectl from. `config.load_kube_config()` loads ~/.kub
 no API keys are required.
 
 #### kube_connect_using_api_key.py
-This script demonstrates usage of API_KEY in python 
-Use the following bash one liners to fetch the TOKEN from Apiserver(aka master). I've used serviceAccount default secret token.
+This script demonstrates usage of API_KEY in python. Following bash one liners can be used to fetch the TOKEN from Apiserver(aka master). I've used serviceAccount default secret token. We'll need kubectl for this bit of information.
 ```
 APISERVER=$(kubectl config view | grep server | cut -f 2- -d ":" | tr -d " ")
 TOKEN=$(kubectl describe secret $(kubectl get secrets | grep default | cut -f1 -d ' ') | grep -E '^token' | cut -f2 -d':' | tr -d '\t')
@@ -77,6 +76,6 @@ roleRef:
 $ kubectl apply -f service-default-admin.yaml
 clusterrolebinding "service-default-experimental" created
 ```
-
+#### More rbac examples will follow.
 
 
